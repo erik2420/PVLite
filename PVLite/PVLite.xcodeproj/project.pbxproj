@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		033F603429B239BA00D042BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F603329B239BA00D042BF /* AppDelegate.swift */; };
+		033F603629B239BA00D042BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F603529B239BA00D042BF /* SceneDelegate.swift */; };
+		033F603829B239BA00D042BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F603729B239BA00D042BF /* ViewController.swift */; };
+		033F603B29B239BA00D042BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033F603929B239BA00D042BF /* Main.storyboard */; };
+		033F603D29B239BC00D042BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033F603C29B239BC00D042BF /* Assets.xcassets */; };
+		033F604029B239BC00D042BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033F603E29B239BC00D042BF /* LaunchScreen.storyboard */; };
+		0367FBE829B7921D00236FDE /* Pole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0367FBE729B7921D00236FDE /* Pole.swift */; };
+		03FEE31A29D48181009BE03F /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 03FEE31929D48181009BE03F /* Socket */; };
+		03FEE31D29D48192009BE03F /* SSLService in Frameworks */ = {isa = PBXBuildFile; productRef = 03FEE31C29D48192009BE03F /* SSLService */; };
+		03FEE32229D489CA009BE03F /* FilesProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 03FEE32129D489CA009BE03F /* FilesProvider */; };
+		03FEE32429E0675F009BE03F /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEE32329E0675F009BE03F /* CustomPointAnnotation.swift */; };
+		03FEE32629E067E7009BE03F /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEE32529E067E7009BE03F /* ToggleButton.swift */; };
+		03FEE32829E06831009BE03F /* PoleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEE32729E06831009BE03F /* PoleDetailsViewController.swift */; };
+		03FEE32A29E06938009BE03F /* AttacherSelectionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEE32929E06938009BE03F /* AttacherSelectionMenu.swift */; };
+		03FEE32C29E06965009BE03F /* OwnerSelectionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEE32B29E06965009BE03F /* OwnerSelectionMenu.swift */; };
+		03FEE32E29E06991009BE03F /* PoleAttribsSelectionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEE32D29E06991009BE03F /* PoleAttribsSelectionMenu.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		033F603029B239BA00D042BF /* PVLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PVLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		033F603329B239BA00D042BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		033F603529B239BA00D042BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		033F603729B239BA00D042BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		033F603A29B239BA00D042BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		033F603C29B239BC00D042BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		033F603F29B239BC00D042BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		033F604129B239BC00D042BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0367FBE729B7921D00236FDE /* Pole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pole.swift; sourceTree = "<group>"; };
+		03FEE32329E0675F009BE03F /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		03FEE32529E067E7009BE03F /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		03FEE32729E06831009BE03F /* PoleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoleDetailsViewController.swift; sourceTree = "<group>"; };
+		03FEE32929E06938009BE03F /* AttacherSelectionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttacherSelectionMenu.swift; sourceTree = "<group>"; };
+		03FEE32B29E06965009BE03F /* OwnerSelectionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSelectionMenu.swift; sourceTree = "<group>"; };
+		03FEE32D29E06991009BE03F /* PoleAttribsSelectionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoleAttribsSelectionMenu.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		033F602D29B239BA00D042BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03FEE32229D489CA009BE03F /* FilesProvider in Frameworks */,
+				03FEE31A29D48181009BE03F /* Socket in Frameworks */,
+				03FEE31D29D48192009BE03F /* SSLService in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		033F602729B239BA00D042BF = {
+			isa = PBXGroup;
+			children = (
+				033F603229B239BA00D042BF /* PVLite */,
+				033F603129B239BA00D042BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		033F603129B239BA00D042BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				033F603029B239BA00D042BF /* PVLite.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		033F603229B239BA00D042BF /* PVLite */ = {
+			isa = PBXGroup;
+			children = (
+				033F603329B239BA00D042BF /* AppDelegate.swift */,
+				033F603529B239BA00D042BF /* SceneDelegate.swift */,
+				033F603729B239BA00D042BF /* ViewController.swift */,
+				033F603929B239BA00D042BF /* Main.storyboard */,
+				033F603C29B239BC00D042BF /* Assets.xcassets */,
+				033F603E29B239BC00D042BF /* LaunchScreen.storyboard */,
+				033F604129B239BC00D042BF /* Info.plist */,
+				0367FBE729B7921D00236FDE /* Pole.swift */,
+				03FEE32329E0675F009BE03F /* CustomPointAnnotation.swift */,
+				03FEE32529E067E7009BE03F /* ToggleButton.swift */,
+				03FEE32729E06831009BE03F /* PoleDetailsViewController.swift */,
+				03FEE32929E06938009BE03F /* AttacherSelectionMenu.swift */,
+				03FEE32B29E06965009BE03F /* OwnerSelectionMenu.swift */,
+				03FEE32D29E06991009BE03F /* PoleAttribsSelectionMenu.swift */,
+			);
+			path = PVLite;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		033F602F29B239BA00D042BF /* PVLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 033F604429B239BC00D042BF /* Build configuration list for PBXNativeTarget "PVLite" */;
+			buildPhases = (
+				033F602C29B239BA00D042BF /* Sources */,
+				033F602D29B239BA00D042BF /* Frameworks */,
+				033F602E29B239BA00D042BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PVLite;
+			packageProductDependencies = (
+				03FEE31929D48181009BE03F /* Socket */,
+				03FEE31C29D48192009BE03F /* SSLService */,
+				03FEE32129D489CA009BE03F /* FilesProvider */,
+			);
+			productName = PVLite;
+			productReference = 033F603029B239BA00D042BF /* PVLite.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		033F602829B239BA00D042BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					033F602F29B239BA00D042BF = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 033F602B29B239BA00D042BF /* Build configuration list for PBXProject "PVLite" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 033F602729B239BA00D042BF;
+			packageReferences = (
+				03FEE31829D48181009BE03F /* XCRemoteSwiftPackageReference "BlueSocket" */,
+				03FEE31B29D48192009BE03F /* XCRemoteSwiftPackageReference "BlueSSLService" */,
+				03FEE32029D489CA009BE03F /* XCRemoteSwiftPackageReference "FileProvider" */,
+			);
+			productRefGroup = 033F603129B239BA00D042BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				033F602F29B239BA00D042BF /* PVLite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		033F602E29B239BA00D042BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				033F604029B239BC00D042BF /* LaunchScreen.storyboard in Resources */,
+				033F603D29B239BC00D042BF /* Assets.xcassets in Resources */,
+				033F603B29B239BA00D042BF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		033F602C29B239BA00D042BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				033F603829B239BA00D042BF /* ViewController.swift in Sources */,
+				03FEE32C29E06965009BE03F /* OwnerSelectionMenu.swift in Sources */,
+				03FEE32629E067E7009BE03F /* ToggleButton.swift in Sources */,
+				03FEE32429E0675F009BE03F /* CustomPointAnnotation.swift in Sources */,
+				0367FBE829B7921D00236FDE /* Pole.swift in Sources */,
+				03FEE32E29E06991009BE03F /* PoleAttribsSelectionMenu.swift in Sources */,
+				033F603429B239BA00D042BF /* AppDelegate.swift in Sources */,
+				03FEE32A29E06938009BE03F /* AttacherSelectionMenu.swift in Sources */,
+				033F603629B239BA00D042BF /* SceneDelegate.swift in Sources */,
+				03FEE32829E06831009BE03F /* PoleDetailsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		033F603929B239BA00D042BF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				033F603A29B239BA00D042BF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		033F603E29B239BC00D042BF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				033F603F29B239BC00D042BF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		033F604229B239BC00D042BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		033F604329B239BC00D042BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		033F604529B239BC00D042BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLM38Q7B48;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PVLite/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "For taking pictures of poles.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location helps locate poles easier.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VentureSum.PVLite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		033F604629B239BC00D042BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLM38Q7B48;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PVLite/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "For taking pictures of poles.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location helps locate poles easier.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VentureSum.PVLite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		033F602B29B239BA00D042BF /* Build configuration list for PBXProject "PVLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				033F604229B239BC00D042BF /* Debug */,
+				033F604329B239BC00D042BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		033F604429B239BC00D042BF /* Build configuration list for PBXNativeTarget "PVLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				033F604529B239BC00D042BF /* Debug */,
+				033F604629B239BC00D042BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03FEE31829D48181009BE03F /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/BlueSocket.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		03FEE31B29D48192009BE03F /* XCRemoteSwiftPackageReference "BlueSSLService" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/BlueSSLService.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		03FEE32029D489CA009BE03F /* XCRemoteSwiftPackageReference "FileProvider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amosavian/FileProvider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03FEE31929D48181009BE03F /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03FEE31829D48181009BE03F /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+		03FEE31C29D48192009BE03F /* SSLService */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03FEE31B29D48192009BE03F /* XCRemoteSwiftPackageReference "BlueSSLService" */;
+			productName = SSLService;
+		};
+		03FEE32129D489CA009BE03F /* FilesProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03FEE32029D489CA009BE03F /* XCRemoteSwiftPackageReference "FileProvider" */;
+			productName = FilesProvider;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 033F602829B239BA00D042BF /* Project object */;
+}
