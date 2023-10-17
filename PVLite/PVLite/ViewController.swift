@@ -78,9 +78,15 @@ class ViewController: UIViewController, UIDocumentPickerDelegate, MKMapViewDeleg
     var updateTimer: Timer?
     var polePaddingSize: Int?
     
+    
     var captureSession: AVCaptureSession!
-    var previewLayer: AVCaptureVideoPreviewLayer?
-    var sessionQueue: DispatchQueue = DispatchQueue(label: "session queue") // Dedicated queue for session configuration
+        var previewLayer: AVCaptureVideoPreviewLayer!
+        
+        var scannedData: String = ""
+        var scannedQRCount: Int = 0
+        var fileCount: Int = 0
+    
+    var lastScannedCode: String?
 
     
     
@@ -112,6 +118,10 @@ class ViewController: UIViewController, UIDocumentPickerDelegate, MKMapViewDeleg
         sideMenu.parentViewController = self
         
         captureSession = AVCaptureSession()
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+            doubleTap.numberOfTapsRequired = 2
+            view.addGestureRecognizer(doubleTap)
     }
     
     //Each Time View is Loaded, Check if User has a Username (TODO: replace with login screen)
@@ -823,19 +833,20 @@ class ViewController: UIViewController, UIDocumentPickerDelegate, MKMapViewDeleg
             
             let scanQRCodeAction = UIAlertAction(title: "Scan QR Code", style: .default) { _ in
                 // Call your method to start the QR code scanning process.
-                
-                self.sessionQueue.async { [weak self] in
-                            guard let self = self else { return }
-                            if self.captureSession.isRunning {
-                                DispatchQueue.main.async {
-                                    self.captureSession.stopRunning()
-                                    self.previewLayer?.removeFromSuperlayer()
-                                    self.previewLayer = nil
-                                }
-                            } else {
-                                self.setupCaptureSession()
+
+                    self.sessionQueue.async { [weak self] in
+                        guard let self = self else { return }
+                        if self.captureSession.isRunning {
+                            DispatchQueue.main.async {
+                                self.captureSession.stopRunning()
+                                self.previewLayer?.removeFromSuperlayer()
+                                self.previewLayer = nil
                             }
+                        } else {
+                            self.setupCaptureSession()  // Ensure this method is properly setting up the QR code scanning session
                         }
+                    }
+                
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -1696,7 +1707,6 @@ class ViewController: UIViewController, UIDocumentPickerDelegate, MKMapViewDeleg
     
     
     
-    
 //MARK: Settings Functions________________________________________________________________________________________
     // Get Primary line size from UserDefaults
     func getPrimaryLineSizeFromUserDefaults() -> Int {
@@ -1988,133 +1998,167 @@ class ViewController: UIViewController, UIDocumentPickerDelegate, MKMapViewDeleg
     
     
     
-    func setupCaptureSession() {
-        sessionQueue.async { [weak self] in
-                guard let self = self else { return }
-                guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-                    self.failed()
-                    return
-                }
-                do {
-                    let videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-                    self.captureSession.beginConfiguration() // Begin configuration
-                    if self.captureSession.canAddInput(videoInput) {
-                        self.captureSession.addInput(videoInput)
-                    } else {
-                        self.failed()
-                        return
-                    }
-                    
-                    let metadataOutput = AVCaptureMetadataOutput()
-                    if self.captureSession.canAddOutput(metadataOutput) {
-                        self.captureSession.addOutput(metadataOutput)
-                        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-                        metadataOutput.metadataObjectTypes = [.qr]
-                    } else {
-                        self.failed()
-                        return
-                    }
-                    self.captureSession.commitConfiguration() // Commit configuration
-                    
-                    self.captureSession.startRunning() // Keep this line here
-                    
-                    DispatchQueue.main.async {
-                        self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-                        self.previewLayer?.frame = self.view.layer.bounds
-                        if let previewLayer = self.previewLayer {
-                            self.view.layer.addSublayer(previewLayer)
-                        }
-                    }
-                } catch {
-                    self.failed()
-                }
+
+    
+    @objc func handleDoubleTap() {
+        stopScanningAndSaveData()
+    }
+
+    func stopScanningAndSaveData() {
+        // Stop the session
+        DispatchQueue.global().async { [weak self] in
+            self?.captureSession.stopRunning()
+            
+            // Wait for a moment to ensure the session is fully stopped
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+                // Restart the session
+                self?.startSession()
             }
+        }
+        
+        // Save data and reset session variables
+        saveScannedData()
+        scannedData = ""
+        scannedQRCount = 0
+        fileCount += 1
+        lastScannedCode = nil  // Reset the last scanned code
     }
     
     func failed() {
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
-        captureSession = nil
-        previewLayer?.removeFromSuperlayer()
-        previewLayer = nil
-    }
+            let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+            captureSession = nil
+        }
+    
+    
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        captureSession.stopRunning()
         if let metadataObject = metadataObjects.first {
-            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-            guard let stringValue = readableObject.stringValue else { return }
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
-        }
-        previewLayer?.removeFromSuperlayer()
-        previewLayer = nil
-        
+                guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+                guard let stringValue = readableObject.stringValue else { return }
+                
+                // Ignore if the code is the same as the last scanned code
+                guard stringValue != lastScannedCode else { return }
+                
+                lastScannedCode = stringValue  // Update the last scanned code
+                
+                scannedQRCount += 1
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                showScanSuccessIndicator()  // Show the scan success indicator
+                found(code: stringValue)
+            }
     }
+
     
     func found(code: String) {
-        guard let decodedData = Data(base64Encoded: code) else {
-            print("Failed to decode Base64 string")
-            return
-        }
-        
-        do {
-            let decompressedData = try decodedData.gunzipped()
-            guard let decompressedString = String(data: decompressedData, encoding: .utf8) else {
-                print("Failed to convert decompressed data to string")
+            guard let decodedData = Data(base64Encoded: code) else {
+                print("Failed to decode Base64 string")
                 return
             }
             
-            //print(decompressedString)
-            
-            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("decoded_file.txt")
             do {
-                try decompressedString.write(to: fileURL, atomically: true, encoding: .utf8)
-            } catch {
-                print("Failed to save the decompressed text: \(error)")
-            }
-            
-            
-            //Try to put poles
-            
-            if doesFileExist(fileName: "poles_active"){
-                //Ask user if they want to open active poles file
-                
-                    let alertController = UIAlertController(title: "Active Poles", message: "You already have an active poles file that hasn't been completed; importing new poles will overwrite that currently active poles file. Continue?", preferredStyle: .alert)
-                    
-                    let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-                        //Handle Yes action
-                        self.poles.removeAll()
-                        self.readPolesFile(selectedFileURL: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("decoded_file.txt"))
-                    }
-                    
-                    let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-                        // Handle No action
-                    }
-                    
-                    alertController.addAction(yesAction)
-                    alertController.addAction(noAction)
-                    
-                    present(alertController, animated: true, completion: nil)
+                let decompressedData = try decodedData.gunzipped()
+                guard let decompressedString = String(data: decompressedData, encoding: .utf8) else {
                     
                     
+                    print("Failed to convert decompressed data to string")
+                    return
                 }
-            
-            
-        } catch {
-            print("Failed to decompress data: \(error)")
+                scannedData += decompressedString + "\n"
+                
+                print(scannedData)
+            } catch {
+                print("Failed to decompress data: \(error)")
+            }
+        }
+    
+    func startSession() {
+        DispatchQueue.global().async { [weak self] in
+            self?.captureSession.startRunning()
         }
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
+    func saveScannedData() {
+        let fileName: String
+            switch fileCount {
+            case 0:
+                fileName = "poles.txt"
+                lblInfo.text = "Now Scan all Wiring QR Codes..."
+            case 1:
+                fileName = "wiring.txt"
+                lblInfo.text = "Done!"
+            default:
+                fileName = "decoded_file_\(fileCount).txt"
+            }
+            
+            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(fileName)
+            
+            do {
+                try scannedData.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("Data saved to \(fileURL)")
+            } catch {
+                print("Failed to save the decompressed text: \(error)")
+            }
+        }
+        
+        override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+            return .portrait
+        }
+    
+    func addScanningGuideOverlay() -> CGRect {
+        // Create a new view for the overlay
+        let overlayView = UIView(frame: previewLayer.frame)
+        overlayView.backgroundColor = UIColor.clear
+        view.addSubview(overlayView)
+
+        // Create a layer to darken the area outside the scanning area
+        let darkLayer = CAShapeLayer()
+        let path = UIBezierPath(rect: overlayView.bounds)
+        let scanRect = CGRect(x: 0, y: (overlayView.bounds.height - view.bounds.width) / 2, width: view.bounds.width, height: view.bounds.width)
+        path.append(UIBezierPath(rect: scanRect).reversing())
+        darkLayer.path = path.cgPath
+        darkLayer.fillColor = UIColor(white: 0, alpha: 0.5).cgColor
+        overlayView.layer.addSublayer(darkLayer)
+
+        // Create a border around the scanning area
+        let borderLayer = CAShapeLayer()
+        borderLayer.path = UIBezierPath(rect: scanRect).cgPath
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.strokeColor = UIColor.white.cgColor
+        borderLayer.lineWidth = 2
+        overlayView.layer.addSublayer(borderLayer)
+
+        return scanRect
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+    
+    func showScanSuccessIndicator() {
+        // Create a new view to overlay
+        let overlayView = UIView(frame: previewLayer.frame)
+        overlayView.backgroundColor = UIColor(white: 0, alpha: 0.5)  // semi-transparent black
+        
+        // Create a label to show a checkmark or success message
+        let label = UILabel()
+        label.text = "✓"  // or "Scanned Successfully"
+        label.font = UIFont.systemFont(ofSize: 48)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.frame = overlayView.bounds
+        
+        // Add the label to the overlay view
+        overlayView.addSubview(label)
+        
+        // Add the overlay view to the main view
+        view.addSubview(overlayView)
+        
+        // Fade out and remove the overlay view after a short delay
+        UIView.animate(withDuration: 0.3, delay: 0.5, options: [], animations: {
+            overlayView.alpha = 0
+        }) { _ in
+            overlayView.removeFromSuperview()
+        }
     }
-
     
     
     
